@@ -1,2 +1,28 @@
 [dev-dependencies]
 rusty-hook = "^0.11.2"
+
+# Read <https://corrode.dev/blog/pitfalls-of-safe-rust/#clippy-can-prevent-many-of-these-issues>
+[lints.rust]
+arithmetic_overflow = "deny"
+
+[lints.clippy]
+checked_conversions = "deny"
+cast_possible_truncation = "deny"
+cast_sign_loss = "deny"
+cast_possible_wrap = "deny"
+cast_precision_loss = "deny"
+integer_division = "deny"
+arithmetic_side_effects = "deny"
+unchecked_duration_subtraction = "deny"
+unwrap_used = "warn"
+expect_used = "warn"
+panicking_unwrap = "deny"
+option_env_unwrap = "deny"
+indexing_slicing = "deny"
+join_absolute_paths = "deny"
+serde_api_misuse = "deny"
+uninit_vec = "deny"
+transmute_int_to_char = "deny"
+transmute_int_to_float = "deny"
+transmute_ptr_to_ref = "deny"
+transmute_undefined_repr = "deny"
