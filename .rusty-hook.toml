@@ -1,0 +1,3 @@
+[hooks]
+pre-commit = "cargo fmt --all"
+pre-push = "./scripts/check-license-header.sh"
