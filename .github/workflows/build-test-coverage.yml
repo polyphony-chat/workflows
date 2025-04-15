@@ -20,13 +20,15 @@ jobs:
         with:
           cache-all-crates: "true"
       - uses: taiki-e/install-action@7cb2cdb5024b2b45585f150af1ee02e24b87edd7
-      - name: Build, Test with nextest, Publish Coverage
+        with:
+          tool: cargo-binstall
+      - name: Build, Test, Publish Coverage
         run: |
           if [ -n "${{ secrets.COVERALLS_REPO_TOKEN }}" ]; then
-            curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash
-            cargo binstall --no-confirm cargo-tarpaulin --force
+            cargo binstall --no-confirm cargo-tarpaulin --force --only-signed
             cargo tarpaulin --all-features --avoid-cfg-tarpaulin --tests --verbose --skip-clean --coveralls ${{ secrets.COVERALLS_REPO_TOKEN }} --timeout 120
           else
             echo "Code Coverage step is skipped on PRs from forks."
+            cargo binstall --no-confirm --force --only-signed
             cargo nextest run --verbose --all-features
           fi
