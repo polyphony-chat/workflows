@@ -10,6 +10,11 @@ on:
   schedule:
     - cron: "0 7 * * 1"
 
+# Auto-abort duplicate jobs (e.g. job being triggered again on push to open PR)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   cargo-deny:
     runs-on: ubuntu-latest

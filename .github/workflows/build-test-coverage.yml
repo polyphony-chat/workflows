@@ -7,6 +7,11 @@ on:
   pull_request:
     branches: ["*"]
 
+# Auto-abort duplicate jobs (e.g. job being triggered again on push to open PR)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   CARGO_TERM_COLOR: always
 

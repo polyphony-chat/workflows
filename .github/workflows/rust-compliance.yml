@@ -10,6 +10,11 @@ on:
 env:
   CARGO_TERM_COLOR: always
 
+# Auto-abort duplicate jobs (e.g. job being triggered again on push to open PR)
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   rust-clippy-analyze:
     name: Run rust-clippy analyzing
