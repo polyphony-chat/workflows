@@ -27,7 +27,7 @@ jobs:
       - uses: Swatinem/rust-cache@9d47c6ad4b02e050fd481d890b2ea34778fd09d6
         with:
           cache-all-crates: "true"
-      - uses: taiki-e/install-action@7cb2cdb5024b2b45585f150af1ee02e24b87edd7
+      - uses: taiki-e/install-action@d12e869b89167df346dd0ff65da342d1fb1202fb
         with:
           tool: cargo-nextest,cargo-binstall
       - name: Install dependencies
